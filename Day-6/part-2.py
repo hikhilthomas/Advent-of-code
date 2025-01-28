@@ -1,6 +1,5 @@
 import timeit
-import os
-
+from TestHelper import generate_file_name
 
 def findPath(currRow, currCol, matrix, visited = None, direction = 0, checkLoop = False):
     if visited is None:
@@ -56,15 +55,11 @@ def main():
 
 
 def importTests():
-    # Get the directory of the current script
-    script_dir = os.path.dirname(__file__)
-
-    # Build the full path to the file
-    file_path = os.path.join(script_dir, "tests.txt")
 
     # Build the map
     matrix = []
     startRow, startCol = 0, 0
+    file_path = generate_file_name(__file__, "tests.txt")
     with open(file_path, "r") as f:
         lines = f.readlines()
         for i in range(len(lines)):
