@@ -1,4 +1,6 @@
 import timeit
+import os
+
 
 def findPath(currRow, currCol, matrix, visited = None, direction = 0, checkLoop = False):
     if visited is None:
@@ -41,20 +43,29 @@ def findPath(currRow, currCol, matrix, visited = None, direction = 0, checkLoop 
     if checkLoop:
         return False
 
-    # done to use timeit.timeit()
+    # Fix to use timeit.timeit()
     return str(count)
 
 def main():
     startRow, startCol, matrix = importTests()
     print(findPath(startRow, startCol, matrix))
+
+    # Execute 1000 times to estimate time
     executionTime = timeit.timeit(findPath(startRow, startCol, matrix), number=1000)
     print(f"Execution time: {executionTime:.6f} seconds")
 
 
 def importTests():
+    # Get the directory of the current script
+    script_dir = os.path.dirname(__file__)
+
+    # Build the full path to the file
+    file_path = os.path.join(script_dir, "tests.txt")
+
+    # Build the map
     matrix = []
     startRow, startCol = 0, 0
-    with open("tests.txt", "r") as f:
+    with open(file_path, "r") as f:
         lines = f.readlines()
         for i in range(len(lines)):
             line = [i for i in lines[i].strip()]
