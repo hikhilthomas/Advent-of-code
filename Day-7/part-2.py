@@ -8,7 +8,8 @@ def canGenerateResult(currSum, idx, result, equation):
         else:
             return False
     return (canGenerateResult(currSum + equation[idx], idx + 1, result, equation) or
-            canGenerateResult(currSum * equation[idx], idx + 1, result, equation))
+            canGenerateResult(currSum * equation[idx], idx + 1, result, equation) or
+            canGenerateResult(int(str(currSum) + str(equation[idx])), idx + 1, result, equation))
 
 
 def calibrationResult(equations: dict) -> int:
