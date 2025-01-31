@@ -63,7 +63,7 @@ def importTests():
     # Build the map
     matrix = []
     startRow, startCol = 0, 0
-    file_path = generate_file_name(__file__, "tests.txt")
+    file_path = generate_file_name(__file__, "test.txt")
     with open(file_path, "r") as f:
         lines = f.readlines()
         for i in range(len(lines)):
